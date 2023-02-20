@@ -80,38 +80,35 @@ public class CollegeServiceImpl implements CollegeService {
 
 	@Override
 	public List<StudentAvgMark> getStudentsAvgMark() {
-		// TODO Auto-generated method stub
-		return null;
+		return markRepository.studentsAvgMarks();
 	}
 
 	@Override
-	public List<StudentName> getBestStudents()  {
-		// TODO Auto-generated method stub
-		return null;
+	public List<StudentName> getBestStudents() {
+		
+		return markRepository.bestStudents();
 	}
 
 	@Override
 	public List<StudentName> getTopBestStudents(int nStudents) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return markRepository.topBestStudents(nStudents);
 	}
 
 	@Override
 	public List<StudentName> getTopBestStudentsSubject(int nStudents, String subject) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return markRepository.topBestStudentsSubject(nStudents, subject);
 	}
 
 	@Override
 	public List<StudentSubjectMark> getMarksOfWorstStudents(int nStudents) {
-		// TODO Auto-generated method stub
-		return null;
+		return markRepository.worstStudentsMarks(nStudents);
 	}
 
 	@Override
 	public List<IntervalMarksCount> marksDistibution(int interval) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return markRepository.marksDistribution(interval);
 	}
-
 }
