@@ -1,31 +1,39 @@
 package telran.spring.data.entities;
-
 import jakarta.persistence.*;
-import lombok.*;
-
 @Entity
-@Table(name = "marks_Eclipce")
-@NoArgsConstructor
-@Getter
+@Table(name="marks")
 public class MarkEntity {
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	long id;
+	@ManyToOne
+	@JoinColumn(name = "stid")
+	StudentEntity student;
+	@ManyToOne
+	@JoinColumn(name = "suid")
+	SubjectEntity subject;
+	int mark;
 	public MarkEntity(StudentEntity student, SubjectEntity subject, int mark) {
-		super();
 		this.student = student;
 		this.subject = subject;
 		this.mark = mark;
 	}
-
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Id
-	public long id;
+	public MarkEntity() {
+	}
+	public long getId() {
+		return id;
+	}
+	public StudentEntity getStudent() {
+		return student;
+	}
+	public SubjectEntity getSubject() {
+		return subject;
+	}
+	public int getMark() {
+		return mark;
+	}
 	
-	@ManyToOne
-	@JoinColumn(name = "student_id")
-	public StudentEntity student;
 	
-	@ManyToOne
-	@JoinColumn(name = "subject_id")
-	public SubjectEntity subject;
 	
-	public int mark;
+	
 }
