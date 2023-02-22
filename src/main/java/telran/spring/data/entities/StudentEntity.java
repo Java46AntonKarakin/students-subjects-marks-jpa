@@ -1,4 +1,6 @@
 package telran.spring.data.entities;
+import java.util.List;
+
 import jakarta.persistence.*;
 @Entity
 @Table(name="students")
@@ -8,6 +10,8 @@ public class StudentEntity {
 	long id;
 	@Column(unique = true)
 	String name;
+	@OneToMany(mappedBy = "student",cascade = CascadeType.REMOVE)
+	List<MarkEntity> marks;
 	public StudentEntity(long id, String name) {
 		super();
 		this.id = id;
