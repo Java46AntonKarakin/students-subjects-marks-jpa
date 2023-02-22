@@ -9,9 +9,12 @@ public interface SubjectRepository extends JpaRepository<SubjectEntity, Long> {
 
 //	@Query(value = "SELECT subject, suid FROM subjects WHERE suid IN (SELECT suid  FROM marks GROUP BY suid"
 //			+ " HAVING COUNT(suid) > :markCountLess)", nativeQuery = true)
-	@Query(" SELECT subject, id FROM SubjectEntity WHERE id IN"
-			+ " (SELECT subject.id FROM MarkEntity GROUP BY subject.id"
-			+ " HAVING COUNT(subject.id) > :markCountLess)")
+	@Query(""" 
+			SELECT subjects FROM SubjectEntity subjects 
+			WHERE subjects.id IN (SELECT subject.id 
+			FROM MarkEntity 
+			GROUP BY subject.id 
+			HAVING COUNT(mark) > :markCountLess) 
+			""" )
 	List<SubjectEntity> leastPopularSubjects(double markCountLess);
-
 }
